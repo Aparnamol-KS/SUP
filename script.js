@@ -57,22 +57,22 @@ let updateTimer;
 
 const music_list = [
     {
-        img: 'images/unstoppable.jpg',
-        name: 'Unstoppable',
-        artist: 'by Sia',
-        music: 'music/unstoppable.mp3'
+        img: 'assets/images/beggin.jpg',
+        name: 'Beggin',
+        artist: 'by Måneskin',
+        music: 'assets/music/beggin.mp3'
     },
     {
-        img: 'images/Kar-Har-Maidaan-Fateh-Sanju-500-500.jpg',
-        name: 'Maidaan Fateh',
-        artist: 'by Shreya Ghoshal, Sukhwinder Singh',
-        music: 'music/Kar Har Maidaan Fateh.mp3'
+        img: 'assets/images/perfect.jpg',
+        name: 'Perfect',
+        artist: 'by Ed Sheeran',
+        music: 'assets/music/perfect.mp3'
     },
     {
-        img: 'images/restart.jpg',
-        name: 'Restart',
-        artist: 'by Shaan, Swanand Kirkire',
-        music: 'music/Restart(PagalWorldl).mp3'
+        img: 'assets/images/senorita.jpg',
+        name: 'Señorita',
+        artist: 'by Shawn Mendes',
+        music: 'assets/music/senorita.mp3'
     },
     {
         img: 'images/bandeya.jpg',
