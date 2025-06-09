@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Cake</title>
+    <style>
+        :root {
+            --size: 70;
+            /* reduced from 90 */
+            --unit: calc((var(--size) / 700) * 1vmin);
+            --width: calc(700 * var(--unit));
+            --height: calc(700 * var(--unit));
+             --background-color: linear-gradient(to right, #ffe0f0, #e0f7fa);
+            --cream-color: #efebe7;
+            --chocolate-color: #4c3529;
+            --candle-color: #9f897b;
+            --flame-color-1: #de9159;
+            --flame-color-2: #bb5f00;
+            --flame-color-3: #960000;
+            --flame-color-secondary: #fb9263;
+        }
+
+        .container .cake .layer_1 {
+            background: linear-gradient(to bottom, #ffdde1, #ff9a9e);
+        }
+
+        .container .cake .layer_2 {
+            background: linear-gradient(to bottom, #fbc2eb, #a6c1ee);
+        }
+
+        .container .cake .layer_3 {
+            background: linear-gradient(to bottom, #fad0c4, #ffd1ff);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--background-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .container {
+            position: relative;
+            height: var(--height);
+            width: var(--width);
+            background: var(--background-color);
+            overflow: hidden;
+        }
+
+        .container * {
+            position: absolute;
+            transform: translate(-50%, 0);
+        }
+
+        .flame {
+            --size: 60;
+            height: calc(var(--size) * var(--unit));
+            width: calc(var(--size) / 2 * var(--unit));
+            border-radius: 100%;
+            left: 50%;
+            top: 19%;
+            z-index: 3;
+            background: radial-gradient(ellipse, var(--flame-color-1), var(--flame-color-2), var(--flame-color-3));
+            animation: moving-flame 10s ease-in-out alternate infinite,
+                glow-out 10s ease-in-out alternate infinite;
+        }
+
+        .candle {
+            --size: 90;
+            background-color: var(--candle-color);
+            height: calc(var(--size) * var(--unit));
+            width: calc(var(--size) / 6 * var(--unit));
+            border-radius: 100% / 10%;
+            box-shadow: calc(6 * var(--unit)) calc(-4 * var(--unit)) 0 var(--candle-color);
+            left: 50%;
+            top: 28%;
+            z-index: 2;
+        }
+
+        .cake {
+            --size: 600;
+            left: 50%;
+            top: 30%;
+            height: calc(var(--size) * var(--unit));
+            width: calc(var(--size) * var(--unit));
+        }
+
+        .chocolate_top_layer {
+            top: 0;
+            left: 50%;
+            width: calc(var(--size) * var(--unit));
+            height: 35%;
+            background: var(--chocolate-color);
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+        .layer {
+            --size: 600;
+            top: 20%;
+            left: 50%;
+            width: calc(var(--size) * var(--unit));
+            height: 35%;
+            background: var(--cream-color);
+            border-radius: 50%;
+            box-shadow:
+                0px calc(65 * var(--unit)) 0px 0px var(--chocolate-color),
+                0px calc(60 * var(--unit)) 0px 0px var(--chocolate-color),
+                0px calc(55 * var(--unit)) 0px 0px var(--chocolate-color),
+                0px calc(50 * var(--unit)) 0px 0px var(--chocolate-color),
+                0px calc(38 * var(--unit)) 0px 0px var(--chocolate-color),
+                0px calc(30 * var(--unit)) 0px 0px var(--chocolate-color),
+                0px calc(22 * var(--unit)) 0px 0px var(--chocolate-color),
+                0px calc(14 * var(--unit)) 0px 0px var(--chocolate-color);
+        }
+
+        .layer_1 {
+            top: 30%;
+        }
+
+        .layer_2 {
+            top: 15%;
+        }
+
+        .layer_3 {
+            top: 0;
+        }
+
+        @keyframes moving-flame {
+
+            0%,
+            20%,
+            40%,
+            60%,
+            80%,
+            100% {
+                border-radius: 40% 90% 70% 70% / 100% 100% 70% 70%;
+                opacity: 1;
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                border-radius: 90% 40% 70% 70% / 100% 100% 70% 70%;
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes glow-out {
+
+            0%,
+            20%,
+            100% {
+                box-shadow: 0 0 calc(10 * var(--unit)) calc(1 * var(--unit)) var(--flame-color-secondary);
+            }
+
+            40%,
+            80% {
+                box-shadow: 0 0 calc(20 * var(--unit)) calc(1 * var(--unit)) var(--flame-color-secondary);
+            }
+
+            60% {
+                box-shadow: 0 0 calc(30 * var(--unit)) calc(1 * var(--unit)) var(--flame-color-secondary);
+            }
+        }
+
+        .birthday-text {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            color: black;
+            text-shadow: 2px 2px 4px violet;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            animation: popIn 1.5s ease-out forwards;
+            opacity: 0;
+            z-index: 100;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: translateX(-50%) scale(0.5);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translateX(-50%) scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .controls {
+            margin-top: 1rem;
+            z-index: 999;
+        }
+
+        .controls button {
+            font-size: 1rem;
+            padding: 8px 16px;
+            margin: 0 8px;
+            border: none;
+            background-color: #ff80ab;
+            color: black;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: cursive;
+            transition: background 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #ff4081;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="birthday-text">Happy Birthday!</div>
+
+    <div class="container">
+        <div class="flame" id="flame"></div> <!-- ✅ Added id here -->
+        <div class="candle"></div>
+        <div class="cake">
+            <div class="chocolate_top_layer"></div>
+            <div class="layer layer_1"></div>
+            <div class="layer layer_2"></div>
+            <div class="layer layer_3"></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="startMic()">Blow the Candle</button>
+        <button onclick="relightCandle()">Relight Candle</button>
+    </div>
+    <!-- Background music -->
+    <audio id="bg-music" autoplay loop>
+        <source src="assets/music/happy_birthday.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        const music = document.getElementById("bg-music");
+        // Ensure autoplay works after user interaction (required by most browsers)
+        document.addEventListener("click", () => music.play(), { once: true });
+        window.onload = () => {
+            confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+        };
+
+        const flame = document.getElementById("flame");
+        let audioContext, stream, animationId;
+
+        function startMic() {
+            navigator.mediaDevices.getUserMedia({ audio: true }).then(s => {
+                stream = s;
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const mic = audioContext.createMediaStreamSource(stream);
+                const analyser = audioContext.createAnalyser();
+                mic.connect(analyser);
+                const dataArray = new Uint8Array(analyser.fftSize);
+
+                function detectBlow() {
+                    analyser.getByteTimeDomainData(dataArray);
+                    let sum = 0;
+                    for (let i = 0; i < dataArray.length; i++) {
+                        sum += Math.abs(dataArray[i] - 128);
+                    }
+                    const average = sum / dataArray.length;
+
+                    if (average > 10 && average < 30) {
+                        flame.style.animation = "none";
+                        flame.style.transform = "skewX(20deg) scale(0.8)";
+                        setTimeout(() => {
+                            flame.style.animation = "flicker 0.1s infinite";
+                            flame.style.transform = "none";
+                        }, 300);
+                    }
+
+                    if (average >= 30) {
+                        flame.style.display = "none";
+                        stopMic();
+                        return;
+                    }
+
+                    animationId = requestAnimationFrame(detectBlow);
+                }
+
+                detectBlow();
+            });
+        }
+
+        function stopMic() {
+            if (stream) stream.getTracks().forEach(track => track.stop());
+            if (audioContext) audioContext.close();
+            if (animationId) cancelAnimationFrame(animationId);
+        }
+
+        function relightCandle() {
+            flame.style.display = "block";
+            flame.style.animation = "moving-flame 10s ease-in-out alternate infinite, glow-out 10s ease-in-out alternate infinite";
+            flame.style.transform = "none";
+        }
+    </script>
+</body>
+
+</html>

@@ -17,15 +17,26 @@ function revealCake() {
 
 
 
+
 function revealLetter() {
-    const letter = document.getElementById('letter2');
-    letter.classList.remove('d-none');
+  const letter = document.getElementById("letter2");
+
+  if (letter.classList.contains("d-none")) {
+    // Reveal letter
+    letter.classList.remove("d-none");
+
+    // Add zoom effect
+    setTimeout(() => {
+      letter.classList.add("zoomed");
+    }, 100);
+
+    letter.scrollIntoView({ behavior: "smooth", block: "center" });
+  } else {
+    // Hide letter
+    letter.classList.add("d-none");
+    letter.classList.remove("zoomed");
+  }
 }
-
-
-
-
-
 
 
 
@@ -75,10 +86,16 @@ const music_list = [
         music: 'assets/music/senorita.mp3'
     },
     {
-        img: 'images/bandeya.jpg',
-        name: 'Bandeya re Bandeya',
-        artist: 'by Arijit Singh, Asees Kaur',
-        music: 'music/Bandeya Rey Bandeya - Arijit Singh, Asees Kaur.m4a'
+        img: 'assets/images/dandelions.jpg',
+        name: 'Dandelions',
+        artist: 'by Ruth B',
+        music: 'assets/music/dandelions.mp3'
+    },
+    {
+        img: 'assets/images/thousand_years.jpg',
+        name: 'A Thousand Years',
+        artist: 'by  Christina Perri ',
+        music: 'assets/music/thousand_years.mp3'
     }
 ];
 
@@ -250,3 +267,6 @@ carouselElement.addEventListener('slid.bs.carousel', function (event) {
     }
   });
 });
+
+
+
